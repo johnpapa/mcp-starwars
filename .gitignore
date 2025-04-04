@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+
+
+.idea
+.vs
+.env
+.DS_Store
+Thumbs.db
+
+# Ignore any generated files
+dist
+build
+tsconfig.tsbuildinfo

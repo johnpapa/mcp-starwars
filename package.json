@@ -1,0 +1,70 @@
+{
+  "name": "@johnpapa/mcp-starwars",
+  "version": "0.0.1",
+  "description": "Star Wars API MCP Server demo",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bin": {
+    "mcp-starwars": "./dist/index.js"
+  },
+  "author": {
+    "name": "John Papa",
+    "url": "https://github.com/johnpapa"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnpapa/mcp-starwars"
+  },
+  "homepage": "https://github.com/johnpapa/mcp-starwars",
+  "bugs": {
+    "url": "https://github.com/johnpapa/mcp-starwars/issues"
+  },
+  "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "genai",
+    "api",
+    "star-wars"
+  ],
+  "release": {
+    "extends": "semantic-release-npm-github",
+    "branches": "main"
+  },
+  "scripts": {
+    "start": "tsx ./src/index.ts",
+    "build": "npx tsc",
+    "dev": "tsc && concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
+    "inspector": "npx @modelcontextprotocol/inspector node build/index.js",
+    "release:check:old": "semantic-release --dry-run",
+    "release:check": "node -r dotenv/config ./node_modules/.bin/semantic-release --dry-run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "dotenv": "^16.4.7",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.24.2",
+    "zod-to-json-schema": "^3.24.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9",
+    "semantic-release": "^24.2.3",
+    "semantic-release-npm-github": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}
