@@ -2,11 +2,13 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { getCustomInstructions } from "./utils/instructions.js";
-import { z } from "zod";
+import { listTools, callTool } from "./utils/tools.js";
 
+// Get custom instructions for the MCP server
 const instructions = getCustomInstructions();
 
-const server = new McpServer(
+// Create MCP server with Star Wars tools
+const starWarsMcpServer = new McpServer(
   {
     name: "mcp-starwars",
     version: "1.1.15",
@@ -14,7 +16,10 @@ const server = new McpServer(
   },
   {
     capabilities: {
-      tools: {},
+      tools: {
+        list: listTools,
+        call: callTool,
+      },
     },
     instructions,
   }
@@ -22,8 +27,8 @@ const server = new McpServer(
 
 async function main() {
   const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("Peacock MCP Server running on stdio");
+  await starWarsMcpServer.connect(transport);
+  console.error("Star Wars MCP Server running on stdio");
 }
 
 main().catch((err) => {

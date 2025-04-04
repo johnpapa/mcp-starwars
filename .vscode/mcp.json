@@ -10,9 +10,7 @@
         // "/Users/papa/_git/mcp-starwars/dist/index.js"
         "_git/mcp-starwars/dist/index.js"
       ],
-      "env": {
-        "PEACOCK_REPO": "https://github.com/johnpapa/vscode-peacock"
-      }
+      "env": {}
     }
   }
 }
