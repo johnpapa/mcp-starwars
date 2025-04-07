@@ -3,9 +3,8 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { getCustomInstructions } from "./utils/instructions.js";
-import { listTools, callTool } from "./utils/tools.js";
+import { starwarsTools } from "./utils/tools.js";
 
-// Get custom instructions for the MCP server
 const instructions = getCustomInstructions();
 
 // Create MCP server with Star Wars tools
@@ -18,13 +17,31 @@ const starWarsMcpServer = new McpServer(
   {
     capabilities: {
       tools: {
-        list: listTools,
-        call: callTool,
+        // Register the tool listing and calling functions
+        // list: listTools,
+        // call: callTool,
       },
     },
     instructions,
   }
 );
+
+// Register individual Star Wars tools for direct access
+// This ensures tools are explicitly registered with the MCP server
+Object.entries(starwarsTools).forEach(([name, tool]) => {
+  // Register all Star Wars tools from the starwarsTools object
+  const schemaShape =
+    tool.schema instanceof z.ZodObject
+      ? tool.schema.shape
+      : Object.fromEntries(Object.entries(tool.schema).map(([k, v]) => [k, z.any()]));
+
+  starWarsMcpServer.tool(name, tool.description, async (args: any) => {
+    const result = await tool.handler(args as any);
+    return {
+      content: [{ type: "text", text: JSON.stringify(result) }],
+    };
+  });
+});
 
 // Testing tool
 starWarsMcpServer.tool(
