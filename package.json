@@ -1,6 +1,6 @@
 {
   "name": "@johnpapa/mcp-starwars",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Star Wars API MCP Server demo",
   "license": "MIT",
   "publishConfig": {
