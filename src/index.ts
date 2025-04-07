@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
 import { getCustomInstructions } from "./utils/instructions.js";
 import { listTools, callTool } from "./utils/tools.js";
 
@@ -11,7 +12,7 @@ const instructions = getCustomInstructions();
 const starWarsMcpServer = new McpServer(
   {
     name: "mcp-starwars",
-    version: "1.0.0",
+    version: "1.0.1",
     description: "An MCP Server to retrieve Star Wars API usage information from SWAPI.dev.",
   },
   {
@@ -22,6 +23,16 @@ const starWarsMcpServer = new McpServer(
       },
     },
     instructions,
+  }
+);
+
+// Testing tool
+starWarsMcpServer.tool(
+  "universal-answer",
+  "The secret of the universe with math tricks",
+  { x: z.number(), y: z.number() },
+  async ({ x, y }) => ({
+    content: [{ type: "text", text: String(x * y + 42) }];
   }
 );
 
