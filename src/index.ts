@@ -32,8 +32,8 @@ starWarsMcpServer.tool(
   "The secret of the universe with math tricks",
   { x: z.number(), y: z.number() },
   async ({ x, y }) => ({
-    content: [{ type: "text", text: String(x * y + 42) }];
-  }
+    content: [{ type: "text", text: String(x * y + 42) }],
+  })
 );
 
 async function main() {
