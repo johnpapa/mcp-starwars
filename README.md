@@ -5,6 +5,12 @@
 [![smithery badge](https://smithery.ai/badge/@johnpapa/mcp-starwars)](https://smithery.ai/server/@johnpapa/mcp-starwars)![Node version](https://img.shields.io/badge/Node.js->=20-3c873a?style=flat-square)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
+[![Install with NPM in VS Code](https://img.shields.io/badge/VS_Code-NPM-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode:mcp/install?%7B%22name%22%3A%22starwars%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40johnpapa%2Fmcp-starwars%22%5D%2C%22env%22%3A%7B%7D%7D)
+[![Install with NPM in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-NPM-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders:mcp/install?%7B%22name%22%3A%22starwars%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40johnpapa%2Fmcp-starwars%22%5D%2C%22env%22%3A%7B%7D%7D)
+
+[![Install with Docker in VS Code](https://img.shields.io/badge/VS_Code-Docker-0098FF?style=flat-square&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode:mcp/install?%7B%22name%22%3A%22starwars%22%2C%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22mcp%2Fstarwars%22%5D%2C%22env%22%3A%7B%7D%7D)
+[![Install with Docker in VS Code Insiders](https://img.shields.io/badge/VS_Code_Insiders-Docker-24bfa5?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect?url=vscode-insiders:mcp/install?%7B%22name%22%3A%22starwars%22%2C%22command%22%3A%22docker%22%2C%22args%22%3A%5B%22run%22%2C%22-i%22%2C%22--rm%22%2C%22mcp%2Fstarwars%22%5D%2C%22env%22%3A%7B%7D%7D)
+
 [Features](#features) • [Tools](#tools) • [Setup](#setup) • [Configuring an MCP Host](#configuring-an-mcp-host)
 
 </div>
@@ -17,19 +23,171 @@ MCP Server for the [SWAPI Star Wars API](https://swapi.dev). _The main goal of t
 
 ## 🔧 Features
 
-- TODO
+- **List Star Wars Characters**: Get character data with optional search filters and automatic pagination
+- **List Planets, Films, Species, Vehicles, and Starships**: Access all Star Wars entity collections with search capabilities
+- **Fetch Entity Details by ID**: Get detailed information about specific characters, planets, films, species, vehicles, or starships
+- **Automatic Pagination**: Seamlessly retrieve all pages of data with a single API call
+- **Built-in Caching**: Optimize performance with intelligent API response caching
+- **Cache Management**: Clear cache and view cache statistics to monitor performance
+- **Tool-based MCP Integration**: Register this server with Model Context Protocol (MCP) tools (VS Code, Claude, etc.)
 
 <a name="tools"></a>
 
 ## 🧰 Tools
 
-- TODO
+### 1. `get_people` 🧑‍🤝‍🧑
+
+- **Description**: List Star Wars characters with automatic pagination and optional search
+- **Inputs**:
+  - `page` (optional number): The page number to retrieve (defaults to 1)
+  - `search` (optional string): Name or partial name to search for
+  - `fetchAllPages` (optional boolean): Whether to automatically fetch all pages of results (defaults to true)
+- **Returns**: Collection of Star Wars character data including name, physical attributes, homeworld, and related entities
+
+### 2. `get_person_by_id` 👤
+
+- **Description**: Get details about a specific Star Wars character by ID
+- **Input**:
+  - `id` (string or number): The unique identifier of the character
+- **Returns**: Complete data for the requested character including name, physical attributes, homeworld, and related entities
+
+### 3. `get_planets` 🪐
+
+- **Description**: List Star Wars planets with automatic pagination and optional search
+- **Inputs**:
+  - `page` (optional number): The page number to retrieve (defaults to 1)
+  - `search` (optional string): Planet name or partial name to search for
+  - `fetchAllPages` (optional boolean): Whether to automatically fetch all pages of results (defaults to true)
+- **Returns**: Collection of Star Wars planet data including climate, terrain, population, and related entities
+
+### 4. `get_planet_by_id` 🌍
+
+- **Description**: Get details about a specific Star Wars planet by ID
+- **Input**:
+  - `id` (string or number): The unique identifier of the planet
+- **Returns**: Complete data for the requested planet including climate, terrain, population, and related entities
+
+### 5. `get_films` 🎬
+
+- **Description**: List Star Wars films with automatic pagination and optional search
+- **Inputs**:
+  - `page` (optional number): The page number to retrieve (defaults to 1)
+  - `search` (optional string): Film title or partial title to search for
+  - `fetchAllPages` (optional boolean): Whether to automatically fetch all pages of results (defaults to true)
+- **Returns**: Collection of Star Wars film data including title, episode ID, director, and related entities
+
+### 6. `get_film_by_id` 📽️
+
+- **Description**: Get details about a specific Star Wars film by ID
+- **Input**:
+  - `id` (string or number): The unique identifier of the film
+- **Returns**: Complete data for the requested film including title, episode ID, director, and related entities
+
+### 7. `get_species_list` 👽
+
+- **Description**: List Star Wars species with automatic pagination and optional search
+- **Inputs**:
+  - `page` (optional number): The page number to retrieve (defaults to 1)
+  - `search` (optional string): Species name or partial name to search for
+  - `fetchAllPages` (optional boolean): Whether to automatically fetch all pages of results (defaults to true)
+- **Returns**: Collection of Star Wars species data including classification, physical attributes, and related entities
+
+### 8. `get_species_by_id` 🧬
+
+- **Description**: Get details about a specific Star Wars species by ID
+- **Input**:
+  - `id` (string or number): The unique identifier of the species
+- **Returns**: Complete data for the requested species including classification, physical attributes, and related entities
+
+### 9. `get_vehicles` 🚗
+
+- **Description**: List Star Wars vehicles with automatic pagination and optional search
+- **Inputs**:
+  - `page` (optional number): The page number to retrieve (defaults to 1)
+  - `search` (optional string): Vehicle name or partial name to search for
+  - `fetchAllPages` (optional boolean): Whether to automatically fetch all pages of results (defaults to true)
+- **Returns**: Collection of Star Wars vehicle data including model, manufacturer, and specifications
+
+### 10. `get_vehicle_by_id` 🚙
+
+- **Description**: Get details about a specific Star Wars vehicle by ID
+- **Input**:
+  - `id` (string or number): The unique identifier of the vehicle
+- **Returns**: Complete data for the requested vehicle including model, manufacturer, and specifications
+
+### 11. `get_starships` 🚀
+
+- **Description**: List Star Wars starships with automatic pagination and optional search
+- **Inputs**:
+  - `page` (optional number): The page number to retrieve (defaults to 1)
+  - `search` (optional string): Starship name or partial name to search for
+  - `fetchAllPages` (optional boolean): Whether to automatically fetch all pages of results (defaults to true)
+- **Returns**: Collection of Star Wars starship data including model, manufacturer, and specifications
+
+### 12. `get_starship_by_id` 🛸
+
+- **Description**: Get details about a specific Star Wars starship by ID
+- **Input**:
+  - `id` (string or number): The unique identifier of the starship
+- **Returns**: Complete data for the requested starship including model, manufacturer, and specifications
+
+### 13. `clear_cache` 🧹
+
+- **Description**: Clear the Star Wars API cache (partially or completely)
+- **Input**:
+  - `endpoint` (optional string): Specific endpoint to clear from cache. Leave empty to clear all.
+- **Returns**: Confirmation message indicating which cache was cleared
+
+### 14. `get_cache_stats` 📊
+
+- **Description**: Get statistics about the Star Wars API cache usage
+- **Inputs**: None
+- **Returns**: Cache hit/miss statistics, size, and performance metrics
 
 <a name="setup"></a>
 
 ## 🛠️ Setup
 
-- TODO
+### Quick Installation in VS Code
+
+For the quickest installation, click on one of the VS Code installation buttons at the top of this README.
+
+### Manual Installation in VS Code
+
+#### Using the Command Line
+
+You can install the Star Wars MCP server manually using the following commands:
+
+**For VS Code Stable:**
+
+```bash
+code --add-mcp '{"name":"starwars","command":"npx","args":["-y","@johnpapa/mcp-starwars"],"env":{}}'
+```
+
+**For VS Code Insiders:**
+
+```bash
+code-insiders --add-mcp '{"name":"starwars","command":"npx","args":["-y","@johnpapa/mcp-starwars"],"env":{}}'
+```
+
+#### Using VS Code Settings
+
+1. Open VS Code Settings (File > Preferences > Settings)
+2. Click on the "Open Settings (JSON)" icon in the top right corner
+3. Add the following configuration to your settings.json file:
+
+```json
+"mcp": {
+  "servers": {
+    "starwars": {
+      "command": "npx",
+      "args": ["-y", "@johnpapa/mcp-starwars"],
+      "env": {}
+    }
+  }
+},
+"chat.mcp.discovery.enabled": true
+```
 
 ### Installing via Smithery
 
