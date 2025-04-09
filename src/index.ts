@@ -11,7 +11,7 @@ const instructions = getCustomInstructions();
 const starWarsMcpServer = new McpServer(
   {
     name: "mcp-starwars",
-    version: "1.1.0",
+    version: "1.0.1",
     description:
       "An MCP Server to retrieve Star Wars API usage information from SWAPI.dev with auto-pagination and caching.",
   },
