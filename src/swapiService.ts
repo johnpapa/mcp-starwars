@@ -1,5 +1,5 @@
 // Star Wars API specific utilities with caching and pagination support
-import { ApiCacheService } from "./utils/cacheUtils.js";
+import { ApiCacheService } from "./caching.js";
 
 // SWAPI base URL
 const SWAPI_BASE_URL = "https://swapi.dev/api";
