@@ -30,7 +30,7 @@ export interface SwapiTool<T extends z.ZodType<any, any>> {
   handler: (args: z.infer<T>) => Promise<any>;
 }
 
-// Enhanced schema that adds a toggle for automatic pagination
+// schema that adds a toggle for automatic pagination
 export const EnhancedListResourceSchema = ListResourceSchema.extend({
   fetchAllPages: z
     .boolean()

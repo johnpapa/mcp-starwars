@@ -85,7 +85,7 @@ starWarsMcpServer.tool(
 
 async function main() {
   console.log("┌───────────────────────────────────────────────────┐");
-  console.log("│ Enhanced Star Wars MCP Server                     │");
+  console.log("│ Star Wars MCP Server                     │");
   console.log("├───────────────────────────────────────────────────┤");
   console.log("│ ✓ Auto-pagination for complete results            │");
   console.log("│ ✓ Smart caching (30 min TTL)                      │");
