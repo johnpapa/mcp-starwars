@@ -3,7 +3,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { getCustomInstructions } from "./instructions.js";
-import { starwarsTools, listTools, callTool } from "./tools.js";
+import { starwarsTools, listTools, callTool } from "./tools/index.js";
 
 const instructions = getCustomInstructions();
 
