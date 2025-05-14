@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/johnpapa-mcp-starwars-badge.png)](https://mseep.ai/app/johnpapa-mcp-starwars)
+
 <div align="center">
 # Star Wars MCP Server
 
